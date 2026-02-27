@@ -6,12 +6,14 @@ from flask import g
 import forms
 from flask_migrate import Migrate
 
+from maestros.routes import maestros_bp
 from models import db
 from models import Alumnos
 
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
+app.register_blueprint(maestros_bp)
 db.init_app(app)
 migrate = Migrate(app, db)
 csrf = CSRFProtect()

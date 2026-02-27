@@ -1,0 +1,28 @@
+{% extends "layout.html"%} {% block container%} 
+{%import "_macros.html" as macros %}
+
+<div class="w-full max-w-sm p-6 bg-neutral-primary-soft border border-default rounded-base shadow-xs">
+    <h5 class="mb-4 text-xl font-medium text-body">Maestro</h5>
+    <div class="flex items-baseline text-heading">
+        
+    </div>
+    <ul role="list" class="space-y-4 my-6">
+        
+        <li class="flex items-center">
+            Nombre: {{nombre}}
+        </li>
+        <li class="flex items-center">
+            Apellidos: {{apellidos}}
+        </li>
+        <li class="flex items-center">
+            Especialidad: {{especialidad}}
+        </li>
+        <li class="flex items-center  decoration-body">
+            Correo: {{correo}}
+        </li>
+    </ul>
+    <a href="/"  class="w-full text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+        Regresar
+    </a>
+</div>
+{% endblock %}

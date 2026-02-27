@@ -10,3 +10,12 @@ class Alumnos(db.Model):
     telefono = db.Column(db.String(20))
     correo = db.Column(db.String(50))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now)
+    
+
+class Maestros(db.Model):
+    __tablename__ = 'maestros'
+    matricula = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(50))
+    apellidos = db.Column(db.String(200))
+    especialidad = db.Column(db.String(50))
+    correo = db.Column(db.String(50))
