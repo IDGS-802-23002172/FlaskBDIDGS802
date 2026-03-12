@@ -1,0 +1,55 @@
+{% extends "layout.html" %} 
+{% block container %} 
+{% import "_macros.html" as macros %}
+
+<div class="max-w-md mx-auto py-10">
+
+    <form action="" method="POST" class="space-y-6">
+        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="block mb-2 text-sm font-medium text-heading">¿Qué deseas asignar?</label>
+            {{ form.tipo(class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer", id="tipo_select", onchange="toggleAsignacion()") }}
+        </div>
+
+        <div id="seccion_maestro" class="relative z-0 w-full mb-5 group">
+            <label class="block mb-2 text-sm font-medium text-heading">Selecciona al Maestro Titular</label>
+            {{ form.maestro_id(class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
+        </div>
+
+        <div id="seccion_alumno" class="relative z-0 w-full mb-5 group hidden">
+            <label class="block mb-2 text-sm font-medium text-heading">Selecciona al Alumno a inscribir</label>
+            {{ form.alumno_id(class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
+        </div>
+
+        <div class="flex gap-4">
+            <button type="submit"
+                class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                Guardar Cambios
+            </button>
+            <a href="{{ url_for('cursos.dashboardCursos') }}" 
+            class="text-heading bg-gray-200 hover:bg-gray-300 font-medium rounded-base text-sm px-4 py-2.5">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+function toggleAsignacion() {
+    const tipo = document.getElementById("tipo_select").value;
+    const secMaestro = document.getElementById("seccion_maestro");
+    const secAlumno = document.getElementById("seccion_alumno");
+
+    if (tipo === 'maestro') {
+        secMaestro.classList.remove('hidden');
+        secAlumno.classList.add('hidden');
+    } else {
+        secMaestro.classList.add('hidden');
+        secAlumno.classList.remove('hidden');
+    }
+}
+</script>
+
+{% endblock %}

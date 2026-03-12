@@ -1,0 +1,33 @@
+{% extends "layout.html" %} 
+{% block container %} 
+
+<div class="w-full max-w-sm p-6 bg-neutral-primary-soft border border-default rounded-base shadow-xs">
+    <h5 class="mb-4 text-xl font-medium text-body">Detalles del Curso</h5>
+    
+    <ul role="list" class="space-y-4 my-6">
+        <li class="flex items-center">
+            <strong>Nombre:</strong> {{ curso.nombre }}
+        </li>
+        <li class="flex items-center">
+            <strong>Descripción:</strong> {{ curso.descripcion }}
+        </li>
+        <li class="flex items-center">
+            <strong>Maestro Titular:</strong> {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+        </li>
+        <li class="flex items-center">
+            <strong>Alumnos inscritos:</strong>
+            <ul class="ml-4">
+                {% for alumno in curso.alumnos %}
+                    <li>- {{ alumno.nombre }} {{ alumno.apellidos }}</li>
+                {% else %}
+                    <li>Sin alumnos inscritos</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    
+    <a href="{{ url_for('cursos.dashboardCursos') }}" class="w-full text-center block text-white bg-brand hover:bg-brand-strong font-medium rounded-base text-sm px-4 py-2.5">
+        Regresar
+    </a>
+</div>
+{% endblock %}
